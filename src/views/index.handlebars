@@ -1,0 +1,16 @@
+<h1 class="bg-success-subtle p-2 text-center text-success w-100"> PRODUCTS </h1>
+<section class="d-flex flex-wrap justify-content-evenly ">
+<div id="opts" class="d-flex justify-content-end m-3"></div>
+{{#each products }}
+<div class="card m-1" style="width: 12rem;">
+  <img src={{this.image}} class="card-img-top object-fit-cover" alt={{this._id}}>
+  <div class="card-body">
+    <h5 class="card-title">{{this.title}}</h5>
+    <p class="card-text">${{this.price}}
+    </p>
+    <a href="/details/{{this._id}}" class="btn btn-success">+info</a>
+  </div>
+</div>
+{{/each}}
+</section>
+
