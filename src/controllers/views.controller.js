@@ -21,8 +21,6 @@ export const detailView = async (req, res) => {
 
 export const profileView = async (req, res) => {
         const { user } = req;
-        console.log("user");
-        console.log(user);
         res.status(200).render("profile", { user });
 };
 
