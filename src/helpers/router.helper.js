@@ -1,6 +1,6 @@
 import { Router } from "express"
 import setupResponses from "../middlewares/setupResponses.mid.js";
-import setupPolices from "../middlewares/setupPolicies.mid.js"
+import setupPolicies from "../middlewares/setupPolicies.mid.js"
 
 class RouterHelper {
     constructor() {
@@ -29,35 +29,65 @@ class RouterHelper {
     create = (path, policies, ...middlewares) =>
         this.router.post(
             path,
-            setupPolices(policies),
+            setupPolicies(policies),
             this.applyMiddlewares(middlewares)
         );
     read = (path, policies, ...middlewares) =>
         this.router.get(
             path,
-            setupPolices(policies),
+            setupPolicies(policies),
             this.applyMiddlewares(middlewares)
         );
     update = (path, policies, ...middlewares) =>
         this.router.put(
             path,
-            setupPolices(policies),
+            setupPolicies(policies),
             this.applyMiddlewares(middlewares)
         );
     destroy = (path, policies, ...middlewares) =>
         this.router.delete(
             path,
-            setupPolices(policies),
+            setupPolicies(policies),
             this.applyMiddlewares(middlewares)
         );
-    use = (path, ...middlewares) =>
+    // 1) Método use sin politicas
+    // use = (path, ...middlewares) =>
+    //     this.router.use(
+    //         path,
+    //         this.applyMiddlewares(middlewares)
+    //     );       
+
+    // 2) Método con politicas ejemplo de la plataforma
+    use = (path, policies, ...middlewares) =>
         this.router.use(
             path,
+            setupPolicies(policies),
             this.applyMiddlewares(middlewares)
         );
-    render = (path, ...middlewares) =>
+
+    // 3) Método de politicas opcionales en las rutas Chatgpt
+    // use = (path, policies = [], ...middlewares) => {
+    //     if (policies.length > 0) {
+    //         console.log("entra e le length");
+    //         // console.log(policies);
+    //         this.router.use(path, setupPolicies(policies), ...this.applyMiddlewares(middlewares));
+    //     } else {
+    //         this.router.use(path, ...this.applyMiddlewares(middlewares));
+    //     }
+    // };
+
+
+
+    // render = (path, ...middlewares) =>
+    //     this.router.get(
+    //         path,
+    //         this.apllyMiddlewareToRender(middlewares)
+    //     );
+
+    render = (path, policies, ...middlewares) =>
         this.router.get(
             path,
+            setupPolicies(policies),
             this.apllyMiddlewareToRender(middlewares)
         );
 };

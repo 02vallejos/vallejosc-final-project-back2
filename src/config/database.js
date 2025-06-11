@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { config } from "./config.js";
+import env from "../helpers/env.helper.js"
 
-const mongoIrl = config.MONGO_URL;
+const mongoIrl = env.MONGO_URL;
 
 mongoose.connect(mongoIrl)
 .then((result) => {

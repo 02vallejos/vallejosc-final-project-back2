@@ -1,5 +1,7 @@
-import passport from "../../middlewares/passport.mid.js";
-import { updateUserCb } from "../../controllers/user.controller.js" 
+// user.routes.js
+
+// import { sendEmailCb, updateUserCb } from "../../controllers/users.controller.js";
+import usersController from "../../controllers/users.controller.js";
 import RouterHelper from "../../helpers/router.helper.js";
 
 class UserRouter extends RouterHelper {
@@ -8,7 +10,8 @@ class UserRouter extends RouterHelper {
         this.init();
     };
     init = () => {
-        this.update("/", passport.authenticate("user", { session: false }), updateUserCb);
+        this.update("/", ["USER", "ADMIN"], usersController.updateUserCb);
+        this.read("/:email", ["USER", "ADMIN"], usersController.sendEmailCb)
     }
 };
 

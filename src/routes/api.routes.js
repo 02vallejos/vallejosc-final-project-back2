@@ -12,12 +12,12 @@ class ApiRouter extends RouterHelper {
         this.init();
     };
     init = () => {
-        this.use("/products", productsRouter);
-        this.use("/carts", cartsRouter);
-        this.use("/users", usersRouter);
-        this.use("/cookies", cookieRouter);
-        this.use("/session", sessionRouter);
-        this.use("/auth", authRouter);
+        this.use("/products", ["PUBLIC"], productsRouter);
+        this.use("/carts", ["PUBLIC"], cartsRouter);
+        this.use("/users", ["PUBLIC"], usersRouter);
+        this.use("/cookies", ["PUBLIC"], cookieRouter);
+        this.use("/session", ["PUBLIC"], sessionRouter);
+        this.use("/auth", ["PUBLIC"], authRouter);
     }
 };
 

@@ -1,47 +1,92 @@
-import { productManager } from "../managers/mongo/manager.mongo.js";
+// products.controller.js
 
-export const createOne = async (req, res, next) => {
-        const data = req.body;
-        data.owner_id = req.user._id;
-        const response = await productManager.createOne(data);
-        res.json201(response);
-};
+import { productsService } from "../services/service.js";
 
-export const readAll = async (req, res, next) => {
-        const filter = req.query
-        const response = await productManager.readAll(filter);
-        if (response.length === 0) {
-                res.json404()
-        }
-        res.json200(response);
-};
+class ProductsController {
+  createOne = async (req, res, next) => {
+    const data = req.body;
+    data.owner_id = req.user._id;
+    const response = await productsService.createOne(data);
+    res.json200(response);
+  };
+  readAll = async (req, res, next) => {
+    const filter = req.query;
+    const response = await productsService.readAll(filter);
+    if (response.length === 0) {
+      res.json404();
+    }
+    res.json200(response);
+  };
+  readById = async (req, res, next) => {
+    const { id } = req.params;
+    const response = await productsService.readById(id);
+    if (!response) {
+      res.json404();
+    }
+    res.json200(response);
+  };
+  updateById = async (req, res, next) => {
+    const { id } = req.params;
+    const data = req.body;
+    const response = await productsService.updateById(id, data);
+    if (!response) {
+      res.json404();
+    }
+    res.json200(response);
+  };
+  destroyById = async (req, res, next) => {
+    const { id } = req.params;
+    const response = await productsService.destroyById(id);
+    if (!response) {
+      res.json404();
+    }
+    res.json200(response);
+  };
+}
 
-export const readById = async (req, res, next) => {
-        const { id } = req.params;
-        console.log(`Id is : ${id}`)
-        const response = await productManager.readById(id);
-        if (!response) {
-                res.json404()
-        };
-         res.json200(response);
-};
+const productsController = new ProductsController();
+export default productsController;
 
-export const updateById = async (req, res, next) => {
-        const { id } = req.params;
-        const data = req.body;
-        const response = await productManager.updateById(id, data);
-        if (!response) {
-             res.json404()
-        }
-        res.json200(response);
-};
+// export const createOne = async (req, res, next) => {
+//         const data = req.body;
+//         data.owner_id = req.user._id;
+//         const response = await productsService.createOne(data);
+//         res.json200(response);
+// };
 
-export const destroyById = async (req, res, next) => {
-        const { id } = req.params;
-        console.log(`id : ${id}`);
-        const response = await productManager.destroyById(id);
-        if (!response) {
-                res.json404()
-        }
-        res.json200(response);
-};
+// export const readAll = async (req, res, next) => {
+//         const filter = req.query
+//         const response = await productsService.readAll(filter);
+//         if (response.length === 0) {
+//                 res.json404()
+//         }
+//         res.json200(response);
+// };
+
+// export const readById = async (req, res, next) => {
+//         const { id } = req.params;
+//         const response = await productsService.readById(id);
+//         if (!response) {
+//                 res.json404()
+//         };
+//          res.json200(response);
+// };
+
+// export const updateById = async (req, res, next) => {
+//         const { id } = req.params;
+//         const data = req.body;
+//         const response = await productsService.updateById(id, data);
+//         if (!response) {
+//              res.json404()
+//         }
+//         res.json200(response);
+// };
+
+// export const destroyById = async (req, res, next) => {
+//         const { id } = req.params;
+//         const response = await productsService.destroyById(id);
+//         if (!response) {
+//                 res.json404()
+//         }
+//         res.json200(response);
+// };

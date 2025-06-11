@@ -37,4 +37,4 @@ El backend se desarrolla con **Express.js**, configurado en el archivo `app.js`.
 
 - `express`: Para manejar las rutas y middleware. 
 - `express-handlebars`: Para renderizar las vistas con Handlebars.  
-- `ProductManager`: Clase que gestiona los productos en la tienda.
+- `ProductsManager`: Clase que gestiona los productos en la tienda.

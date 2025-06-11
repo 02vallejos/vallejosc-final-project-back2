@@ -23,3 +23,4 @@ document.querySelector("#login").addEventListener("click", async () => {
       alert(error.message);
     }
   });
+

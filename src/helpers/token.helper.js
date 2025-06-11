@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
-import { config } from "../config/config.js";
+// import { config } from "../config/config.js";
+import env from "../helpers/env.helper.js"
 
 export const createToken = (data) => {
     try {
@@ -7,7 +8,7 @@ export const createToken = (data) => {
             //informacion a tokenizar
             data,
             // clave secreta para encriptar
-            config.SECRET_KEY,
+            env.SECRET_KEY,
             // objeto de configuracion de la firma
             { expiresIn: 7 * 24 * 60 * 60}
         );
@@ -24,7 +25,7 @@ export const verifyToken = (token) => {
             //token a destokenizar
             token,
             // clave secreta para destokenizar
-            config.SECRET_KEY
+            env.SECRET_KEY
         );
         return data
     } catch (error) {

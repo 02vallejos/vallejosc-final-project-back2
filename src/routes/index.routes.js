@@ -9,8 +9,8 @@ class IndexRouter extends RouterHelper {
         this.init();
     };
     init = () => {
-        this.use("/", viewsRouter);
-        this.use("/api", apiRouter);
+        this.use("/", ["PUBLIC"], viewsRouter);
+        this.use("/api", ["PUBLIC"], apiRouter);
     }
 };
 

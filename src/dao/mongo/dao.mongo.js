@@ -1,8 +1,8 @@
-import Product from "../../data/models/products.model.js"
-import Cart from "../../data/models/carts.model.js"
-import User from "../../data/models/users.model.js"
+import Product from "./models/products.model.js"
+import Cart from "./models/carts.model.js"
+import User from "./models/users.model.js"
 
-class Manager {
+class DaoMongo {
     constructor(model) {
         this.model = model
     }
@@ -14,8 +14,8 @@ class Manager {
     destroyById = async (id) => await this.model.findByIdAndDelete(id);
 }
 
-const productManager = new Manager(Product);
-const cartManager = new Manager(Cart);
-const userManager = new Manager(User);
+const productsManager = new DaoMongo(Product);
+const cartsManager = new DaoMongo(Cart);
+const usersManager = new DaoMongo(User);
 
-export { productManager, cartManager, userManager};
+export { productsManager, cartsManager, usersManager};

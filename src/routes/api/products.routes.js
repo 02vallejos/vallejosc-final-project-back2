@@ -1,6 +1,8 @@
-import { createOne, readAll, readById, updateById, destroyById } from "../../controllers/products.controller.js";
-import passport from "../../middlewares/passport.mid.js";
+// products.routes.js
+
+// import { createOne, readAll, readById, updateById, destroyById } from "../../controllers/products.controller.js";
 import RouterHelper from "../../helpers/router.helper.js";
+import productsController from "../../controllers/products.controller.js"
 
 class ProductsRouter extends RouterHelper {
     constructor() {
@@ -8,22 +10,11 @@ class ProductsRouter extends RouterHelper {
         this.init();
     };
     init = () => {
-        // const optsForbidden = {
-        //     session: false,
-        //     failureRedirect: "/api/auth/forbidden"
-        // };
-
-        // this.create("/", passport.authenticate("admin", optsForbidden), createOne);
-        // this.read("/", readAll);
-        // this.read("/:id", readById);
-        // this.update("/:id", passport.authenticate("admin", optsForbidden), updateById);
-        // this.destroy("/:id", passport.authenticate("admin", optsForbidden), destroyById);
-
-        this.create("/", ["ADMIN"], createOne);
-        this.read("/", ["PUBLIC"], readAll);
-        this.read("/:id", ["PUBLIC"], readById);
-        this.update("/:id", ["ADMIN"], updateById);
-        this.destroy("/:id", ["ADMIN"], destroyById);
+        this.create("/", ["ADMIN"], productsController.createOne);
+        this.read("/", ["PUBLIC"], productsController.readAll);
+        this.read("/:id", ["PUBLIC"], productsController.readById);
+        this.update("/:id", ["ADMIN"], productsController.updateById);
+        this.destroy("/:id", ["ADMIN"], productsController.destroyById);
     };
 };
 
