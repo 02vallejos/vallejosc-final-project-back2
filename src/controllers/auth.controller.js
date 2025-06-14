@@ -1,8 +1,9 @@
 //auth.controller.js
 
-import verifyEmail from "../helpers/verifyEmail.helper.js";
+// import verifyEmail from "../helpers/verifyEmail.helper.js";
 import emailService from "../services/emailService.js";
 import { usersService } from "../services/service.js";
+import { createHash } from "../helpers/hash.helper.js";
 // DEFINIDOS COMO UNA CLASE
 
 class AuthController {
@@ -41,8 +42,10 @@ class AuthController {
     res.json200(user, "verified!");
   };
   recoverCb = async (req, res, next) => {
-  
+
     const { email } = req.body;
+    console.log("body recovery");
+    console.log(req.body);
     if (!email) {
       return res.json203("need email");
     }
@@ -50,9 +53,21 @@ class AuthController {
     if (!user) {
       return res.json404("There is no account with that email");
     }
-      console.log("en el auth controller");
-      console.log(user);
+    console.log("en el auth controller");
+    console.log(user);
     await emailService.sendRecoveryEmail(user.email);
+    res.json200();
+  };
+  resetCb = async (req, res, next) => {
+    const { email, password } = req.body;
+
+    const user = await usersService.readBy({ email });
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+    const hashedPassword = createHash(password);
+    await usersService.updateById(user._id, {password: hashedPassword})
+
     res.json200();
   };
 }
