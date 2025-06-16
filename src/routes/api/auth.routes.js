@@ -40,16 +40,8 @@ class AuthRouter extends RouterHelper {
       ["PUBLIC"],
       authCcontroller.verifyUserCb
     );
-    this.create(
-      "/recover",
-      ["PUBLIC"],
-      authCcontroller.recoverCb
-    );
-    this.create(
-      "/reset",
-      ["PUBLIC"],
-      authCcontroller.resetCb
-    );
+    this.create("/recover", ["PUBLIC"], authCcontroller.recoverCb);
+    this.create("/reset", ["PUBLIC"], authCcontroller.resetCb);
   };
 }
 

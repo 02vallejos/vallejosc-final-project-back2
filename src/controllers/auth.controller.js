@@ -1,9 +1,9 @@
 //auth.controller.js
 
-// import verifyEmail from "../helpers/verifyEmail.helper.js";
 import emailService from "../services/emailService.js";
 import { usersService } from "../services/service.js";
 import { createHash } from "../helpers/hash.helper.js";
+import { response } from "express";
 // DEFINIDOS COMO UNA CLASE
 
 class AuthController {
@@ -21,7 +21,12 @@ class AuthController {
     res.clearCookie("token").json200(_id, "Signout Ok");
   };
   onlineCb = async (req, res, next) => {
-    res.json200(null, "Is Online");
+    const payload = {
+      name: req.user.name,
+      email: req.user.email
+    }
+    console.log(payload);
+    res.json200(payload, "Is Online");
   };
   badAuthCb = async (req, res, next) => {
     res.json401();
