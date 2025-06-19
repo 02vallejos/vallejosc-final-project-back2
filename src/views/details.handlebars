@@ -5,9 +5,11 @@
   <img src={{product.image}} class="card-img-top" alt={{product._id}}>
   <div class="card-body">
     <h5 class="card-title">{{product.title}}</h5>
-    <p class="card-text">${{product.price}}
-    </p>
+    <p class="card-text">${{product.price}}</p>
     <button class="btn btn-success" href="#" >Add to cart</button>
+    <div id="opt_admin" data-product-id="{{product._id}}"></div>
   </div>
 </div>
 </section>
+
+<script src="/scripts/details.js"></script>

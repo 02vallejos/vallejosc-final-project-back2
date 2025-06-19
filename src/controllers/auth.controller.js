@@ -23,7 +23,8 @@ class AuthController {
   onlineCb = async (req, res, next) => {
     const payload = {
       name: req.user.name,
-      email: req.user.email
+      email: req.user.email,
+      role: req.user.role
     }
     console.log(payload);
     res.json200(payload, "Is Online");

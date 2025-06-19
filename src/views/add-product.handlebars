@@ -1,0 +1,21 @@
+<main class="d-flex flex-column align-items-center w-100 flex-grow-1">
+  <h1 class="bg-success-subtle p-2 text-center text-success w-100">ADD PRODUCT</h1>
+  <form class="m-3 d-flex flex-column justify-content-evenly flex-wrap align-items-center" style="width: 380px;">
+    <input class="m-2 p-2 text-center w-100" type="email" name="title" id="title" placeholder="TITULO" />
+    <input class="m-2 p-2 text-center w-100" type="text" name="description" id="description" placeholder="DESCRIPCION" />
+    <input class="m-2 p-2 text-center w-100" type="text" name="category" id="category" placeholder="CATEGORIA" />
+    <input class="m-2 p-2 text-center w-100" type="text" name="image" id="image" placeholder="IMAGEN" />
+    <input class="m-2 p-2 text-center w-100" type="text" name="price" id="price" placeholder="PRECIO" />
+    <input class="m-2 p-2 text-center w-100" type="text" name="stock" id="stock" placeholder="STOCK" /> 
+    <input class="m-2 p-2 text-center w-100" type="text" name="owner_id" id="owner_id" placeholder="ID PERSONALIZADO" />
+     <div class="m-2 p-2 text-center w-100">
+      <label class="me-2">¿En oferta?</label>
+      <input type="radio" name="onsale" id="onsale-true" value="true" checked />
+      <label for="onsale" class="me-3" >Si</label>
+      <input type="radio" name="onsale" id="onsale-false" value="false" checked />
+      <label for="onsale" class="me-3" >No</label>
+    </div>
+    <input class="m-2 p-2 text-center btn btn-success w-100" type="button" id="addProduct" value="AGREGAR!" />
+  </form>
+</main>
+<script src="/scripts/addProduct.js"></script>

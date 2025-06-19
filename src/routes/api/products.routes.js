@@ -1,6 +1,5 @@
 // products.routes.js
 
-// import { createOne, readAll, readById, updateById, destroyById } from "../../controllers/products.controller.js";
 import RouterHelper from "../../helpers/router.helper.js";
 import productsController from "../../controllers/products.controller.js"
 

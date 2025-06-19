@@ -25,6 +25,16 @@ const isOnline = async () => {
             <button class="btn btn-success py-1 px-2 m-1" id="signout">Sign out</button>
           `;
       userNameBox.innerHTML = `<strong>Bienvenido: ${response.response.name || response.response.email}</strong>`;
+
+      if(response.response?.role === "ADMIN") {
+        const addBtn = document.createElement("a");
+        addBtn.className = "btn btn-success py-1 px-2 m-1";
+        addBtn.href = "/add-product";
+        addBtn.textContent = "Add Product";
+        selector.appendChild(addBtn);
+      }
+
+
       document.querySelector("#signout").addEventListener("click", async () => {
         try {
           const opts = {

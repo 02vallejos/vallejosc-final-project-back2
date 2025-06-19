@@ -34,11 +34,13 @@ class ViewsController {
     const { email } = req.params;
     res.status(200).render("reset", { email });
   };
-  
  forgotPasswordView = async (req, res) => {
     const { email } = req.params;
     res.status(200).render("recover", { email });
   };
+  addProductView = async (req, res) => {
+    res.status(200).render("add-product");
+  }
 }
 
 const viewsController = new ViewsController();
