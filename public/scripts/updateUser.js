@@ -1,3 +1,4 @@
+// updateUser.js
 
 document.querySelector("#update-user").addEventListener("click", async () => {
   try {

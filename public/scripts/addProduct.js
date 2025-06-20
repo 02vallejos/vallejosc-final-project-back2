@@ -26,7 +26,7 @@ document.querySelector("#addProduct").addEventListener("click", async () => {
       alert(`❌ Error al agregar el producto`);
     } else {
       alert(`🆗 Producto agregado`);
-      // window.location.href = "/";
+      window.location.href = "/";
     }
   } catch (error) {
     console.log(error.message);

@@ -40,7 +40,11 @@ class ViewsController {
   };
   addProductView = async (req, res) => {
     res.status(200).render("add-product");
-  }
+  };
+  updateProdcutView = async (req, res) => {
+    const { id } = req.params;
+    res.status(200).render("update-product", { id });
+  };
 }
 
 const viewsController = new ViewsController();

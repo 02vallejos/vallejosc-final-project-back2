@@ -28,6 +28,7 @@ class ViewsRouter extends RouterHelper {
     this.render("/reset/:email", ["PUBLIC"], viewsController.resetView);
     this.render("/recover", ["PUBLIC"], viewsController.forgotPasswordView);
     this.render("/add-product", ["ADMIN"], viewsController.addProductView);
+    this.render("/update-product/:id", ["ADMIN"], viewsController.updateProdcutView)
   };
 }
 

@@ -17,7 +17,11 @@ const showOption = async () => {
     if (response.response?.role === "ADMIN") {
       opt_admin.innerHTML = `<button class="btn btn-danger" id="deleteBtn" >
                                 Eliminar producto de la DB
-                            </button>`;
+                            </button>
+                            <a class="btn btn-info" id="updateBtn" >
+                                Actulizar producto
+                            </a>
+                            `;
       document
         .querySelector("#deleteBtn")
         .addEventListener("click", async () => {
@@ -29,16 +33,19 @@ const showOption = async () => {
           };
           const deleteUrl = `/api/products/${productId}`;
           let deleteResponse = await fetch(deleteUrl, deleteOpts);
-          let deleteResponseJson = await deleteResponse.json();
-          if (deleteResponse.ok) {
+          deleteResponse = await deleteResponse.json();
+          if (deleteResponse.error) {
+            alert(`❌ Error al eliminar el producto`);
+          } else {
             alert(
               `🆗 Producto eliminado: ${deleteResponseJson.response.title}`
             );
             window.location.href = "/";
-          } else {
-            alert(`❌ Error al eliminar el producto`);
           }
         });
+      
+      updateBtn = document.querySelector("#updateBtn");
+      updateBtn.href = `/update-product/${productId}`;
     }
   } catch (error) {
     console.log(error);

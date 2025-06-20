@@ -26,7 +26,6 @@ class AuthController {
       email: req.user.email,
       role: req.user.role
     }
-    console.log(payload);
     res.json200(payload, "Is Online");
   };
   badAuthCb = async (req, res, next) => {

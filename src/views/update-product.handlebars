@@ -1,0 +1,21 @@
+<main class="d-flex flex-column align-items-center w-100 flex-grow-1">
+  <div data-product-id="{{id}}" id="div_id">
+    <h1 class="bg-success-subtle p-2 text-center text-success w-100">UPDATE PRODUCT {{id}}</h1>
+  </div>
+  <form class="m-3 d-flex flex-column justify-content-evenly flex-wrap align-items-center" style="width: 380px;">
+    <input class="m-2 p-2 text-center w-100" type="text" name="title" id="title" placeholder="TITULO" />
+    <input class="m-2 p-2 text-center w-100" type="text" name="description" id="description" placeholder="DESCRIPCION" />
+    <input class="m-2 p-2 text-center w-100" type="text" name="image" id="image" placeholder="IMAGE" />
+    <input class="m-2 p-2 text-center w-100" type="number" name="price" id="price" placeholder="PRECIO" />
+    <input class="m-2 p-2 text-center w-100" type="number" name="stock" id="stock" placeholder="STOCK" />
+    <div class="m-2 p-2 text-center w-100">
+      <label class="me-2">¿En oferta?</label>
+      <input type="radio" name="onsale" id="onsale-true" value="true" checked />
+      <label for="onsale" class="me-3" >Si</label>
+      <input type="radio" name="onsale" id="onsale-false" value="false" checked />
+      <label for="onsale" class="me-3" >No</label>
+    </div>
+    <input class="m-2 p-2 text-center btn btn-success w-100" type="button" id="update_product" value="UPDATE!" />
+  </form>
+</main>
+<script src="/scripts/updateProduct.js"></script>
