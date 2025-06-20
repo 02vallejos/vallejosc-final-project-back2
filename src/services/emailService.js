@@ -9,7 +9,7 @@ class EmailService {
   }
   async sendVerificationEmail(email, verifyCode) {
     try {
-      const link = `http://localhost:3000/verify/${email}`;
+      const link = `http://localhost:3000/auth/verify/${email}`;
       const html = `<h1> CODIGO DE VERIFICACION DE CUENTA: ${verifyCode}</h1>
       <a href="${link}">Verificar cuenta!</a>
       `;
@@ -26,7 +26,7 @@ class EmailService {
   }
   async sendRecoveryEmail(email) {
     try {
-      const link = `http://localhost:3000/reset/${email}`;
+      const link = `http://localhost:3000/auth/reset/${email}`;
       const html = `
       <h1>Recuperación de contraseña</h1>
       <p>Hacé clic en el siguiente enlace para restablecer tu contraseña:</p>

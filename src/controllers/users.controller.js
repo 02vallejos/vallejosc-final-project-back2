@@ -30,27 +30,3 @@ sendEmailCb = async (req, res, next) => {
 
 const usersController = new UsersController();
 export default usersController;
-
-
-// export const updateUserCb = async (req, res, next) => {
-//   try {
-//     const data = req.body;
-//     const uid = req.user._id;
-//     const response = await usersRepository.updateById(uid, data);
-//     const { method, originalUrl: url } = req;
-//     res.status(200).json({ response, method, url });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// export const sendEmailCb = async (req, res, next) => {
-//   try {
-//     const { email } = req.params;
-//     await sendEmail(email);
-//     const { method, originalUrl: url } = req;
-//     res.status(200).json({ response: "Email sent!", method, url });
-//   } catch (error) {
-//     next(error);
-//   }
-// };

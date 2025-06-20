@@ -1,4 +1,5 @@
-// import { detailView, indexView, loginView, profileView, registerView, updateUSerView } from "../controllers/views.controller.js";
+// views.routes.js
+
 import viewsController from "../controllers/views.controller.js";
 import passport from "../middlewares/passport.mid.js";
 import RouterHelper from "../helpers/router.helper.js";
@@ -10,25 +11,42 @@ class ViewsRouter extends RouterHelper {
   }
   init = () => {
     this.render("/", ["PUBLIC"], viewsController.indexView);
-    this.render("/register", ["PUBLIC"], viewsController.registerView);
-    this.render("/login", ["PUBLIC"], viewsController.loginView);
-    this.render("/details/:pid", ["PUBLIC"], viewsController.detailView);
+    this.render("/user/register", ["PUBLIC"], viewsController.registerView);
+    this.render("/user/login", ["PUBLIC"], viewsController.loginView);
     this.render(
-      "/profile",
+      "/user/profile",
       ["USER", "ADMIN"],
       passport.authenticate("user", { session: false }),
       viewsController.profileView
     );
     this.render(
-      "/update-user",
+      "/user/update-user",
       ["USER", "ADMIN"],
       viewsController.updateUSerView
     );
-    this.render("/verify/:email", ["PUBLIC"], viewsController.verifyView);
-    this.render("/reset/:email", ["PUBLIC"], viewsController.resetView);
-    this.render("/recover", ["PUBLIC"], viewsController.forgotPasswordView);
-    this.render("/add-product", ["ADMIN"], viewsController.addProductView);
-    this.render("/update-product/:id", ["ADMIN"], viewsController.updateProdcutView)
+    this.render("/auth/verify/:email", ["PUBLIC"], viewsController.verifyView);
+    this.render("/auth/reset/:email", ["PUBLIC"], viewsController.resetView);
+    this.render(
+      "/auth/recover",
+      ["PUBLIC"],
+      viewsController.forgotPasswordView
+    );
+    this.render(
+      "/product/details/:pid",
+      ["PUBLIC"],
+      viewsController.detailView
+    );
+    this.render(
+      "/product/add-product",
+      ["ADMIN"],
+      viewsController.addProductView
+    );
+    this.render(
+      "/product/update-product/:id",
+      ["ADMIN"],
+      viewsController.updateProdcutView
+    );
+    this.render("/cart/cart", ["USER", "ADMIN"], viewsController.cartView);
   };
 }
 

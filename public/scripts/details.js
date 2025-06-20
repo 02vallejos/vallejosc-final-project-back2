@@ -45,7 +45,7 @@ const showOption = async () => {
         });
       
       updateBtn = document.querySelector("#updateBtn");
-      updateBtn.href = `/update-product/${productId}`;
+      updateBtn.href = `/product/update-product/${productId}`;
     }
   } catch (error) {
     console.log(error);

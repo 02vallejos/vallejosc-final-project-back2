@@ -6,7 +6,7 @@ class CartsRouter extends RouterHelper {
         this.init();
     };
     init = () => {
-        
+        this.create("/", ["ADMIN"], )
     }
 }
 

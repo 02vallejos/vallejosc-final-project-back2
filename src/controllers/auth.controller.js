@@ -3,9 +3,8 @@
 import emailService from "../services/emailService.js";
 import { usersService } from "../services/service.js";
 import { createHash } from "../helpers/hash.helper.js";
-import { response } from "express";
-// DEFINIDOS COMO UNA CLASE
 
+// DEFINIDOS COMO UNA CLASE
 class AuthController {
   registerCb = async (req, res, next) => {
     const { _id } = req.user;
