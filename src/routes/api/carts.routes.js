@@ -1,4 +1,7 @@
+// carts.rotutes.js
+
 import RouterHelper from "../../helpers/router.helper.js";
+import cartsController from "../../controllers/carts.controller.js";
 
 class CartsRouter extends RouterHelper {
     constructor() {
@@ -6,7 +9,10 @@ class CartsRouter extends RouterHelper {
         this.init();
     };
     init = () => {
-        this.create("/", ["ADMIN"], )
+        this.create("/:id", ["USER", "ADMIN"], cartsController.createOne);
+        this.read("/:id", ["USER", "ADMIN"], cartsController.readById);
+        this.read("/", ["USER", "ADMIN"], cartsController.readBy);
+        this.read("/all", ["USER", "ADMIN"], cartsController.readAll);
     }
 }
 

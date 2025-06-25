@@ -1,6 +1,6 @@
 // view.constrollers.js
 
-import { productsService } from "../services/service.js";
+import { cartsService, productsService } from "../services/service.js";
 
 class ViewsController {
   indexView = async (req, res) => {
@@ -15,6 +15,8 @@ class ViewsController {
   };
   detailView = async (req, res) => {
     const { pid } = req.params;
+    const user = req.user
+    console.log(user);
     const product = await productsService.readById(pid);
     res.status(200).render("product/details", { product });
   };
@@ -47,6 +49,13 @@ class ViewsController {
   };
   cartView = async (req, res) => {
     const user = req.user;
+    const cartItems = cartsService.readBy({
+      user_id: user.user_id,
+      state: "reserved"
+    });
+
+    console.log(cartItems);
+
     res.status(200).render("cart/cart", { user });
   }
 }

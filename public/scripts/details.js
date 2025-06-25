@@ -15,10 +15,12 @@ const showOption = async () => {
     response = await response.json();
 
     if (response.response?.role === "ADMIN") {
-      opt_admin.innerHTML = `<button class="btn btn-danger" id="deleteBtn" >
+      // inserto los botones
+      opt_admin.innerHTML = `
+                            <button class="btn btn-danger p-0 m-2" id="deleteBtn" >
                                 Eliminar producto de la DB
                             </button>
-                            <a class="btn btn-info" id="updateBtn" >
+                            <a class="btn btn-info p-0 m-2" id="updateBtn" >
                                 Actulizar producto
                             </a>
                             `;
@@ -43,9 +45,69 @@ const showOption = async () => {
             window.location.href = "/";
           }
         });
-      
+
       updateBtn = document.querySelector("#updateBtn");
       updateBtn.href = `/product/update-product/${productId}`;
+    }
+
+    // creacion del boton
+    const addToCartBtn = document.createElement("button");
+    addToCartBtn.className = "btn btn-info p-0 m-2";
+    addToCartBtn.id = "addToCart";
+
+    addToCartBtn.addEventListener("click", async () => {
+      const addOpt = {
+        method: "POST",
+        headers: {
+          "Content-Type": "Application/json",
+        },
+      };
+
+      addUrl = `/api/carts/${productId}`;
+      const addResponse = await fetch(addUrl, addOpt);
+
+      console.log(addResponse);
+
+      if (addResponse.ok) {
+        alert("Agregado al carrito");
+        window.location.reload();
+      } else {
+        alert("Error al agregar al carrito");
+        window.location.reload();
+      }
+    });
+
+    // consulta por el producto si esta en carro
+    let readOpt = {
+      method: "GET",
+      headers: {
+        "Content-Type": "Application/json",
+      },
+    };
+    readUrl = `/api/carts?product_id=${productId}&user_id=${response.response.id}`;
+    // readUrl = `/api/carts?product_id=${productId}&user_id=185568c49c69ee746b4958f9`;
+    let readResponse = await fetch(readUrl, readOpt);
+    readResponse = await readResponse.json();
+
+    // console.log("readResponse");
+    // console.log(readResponse);
+
+    if (readResponse.response) {
+      if (
+        !readResponse.response.product_id._id &&
+        !readResponse.response.user_id._id
+      ) {
+        addToCartBtn.textContent = "Add to Cart";
+        opt_admin.appendChild(addToCartBtn);
+      } else {
+        addToCartBtn.className = "btn btn-succes";
+        addToCartBtn.textContent = "In the Cart";
+        addToCartBtn.disabled = true;
+        opt_admin.appendChild(addToCartBtn);
+      }
+    } else {
+       addToCartBtn.textContent = "Add to Cart";
+      opt_admin.appendChild(addToCartBtn);
     }
   } catch (error) {
     console.log(error);

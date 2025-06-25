@@ -23,7 +23,8 @@ class AuthController {
     const payload = {
       name: req.user.name,
       email: req.user.email,
-      role: req.user.role
+      role: req.user.role,
+      id: req.user._id
     }
     res.json200(payload, "Is Online");
   };

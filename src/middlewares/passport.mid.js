@@ -79,7 +79,7 @@ passport.use(
           role: user.role,
         };
         const token = createToken(data);
-        console.log(token);
+        // console.log(token);
         user.token = token;
         done(null, user);
       } catch (error) {

@@ -33,7 +33,7 @@ class ViewsRouter extends RouterHelper {
     );
     this.render(
       "/product/details/:pid",
-      ["PUBLIC"],
+      ["PUBLIC", "USER", "ADMIN"],
       viewsController.detailView
     );
     this.render(
